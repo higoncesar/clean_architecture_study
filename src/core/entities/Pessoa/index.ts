@@ -1,6 +1,5 @@
 import Cpf from '../Cpf'
 import {ErrorName} from '../../errors'
-
 export interface Type{
   name:string
   cpf:string,

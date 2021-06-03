@@ -1,5 +1,19 @@
 import EnrollStudent, {TypeEnrollmentRequest} from "./index";
 import {ErrorName, ErrorCpf, ErrorStudentDuplicated, ErrorBelowMinimumAge, ErrorOverClassCapacity} from '../../errors'
+import LevelRepositoryMemory from '../../repositories/memory/LevelRepositoryMemory'
+import ModuleRepositoryMemory from '../../repositories/memory/ModuleRepositoryMemory'
+import ClassroomRepositoryMemory from '../../repositories/memory/ClassroomRepositoryMemory'
+import EnrollmentRepositoryMemory from '../../repositories/memory/EnrollmentRepositoryMemory'
+
+let enrollStudent: EnrollStudent
+
+beforeEach(()=>{
+    const levelRepository = new LevelRepositoryMemory()
+    const moduleRepository = new ModuleRepositoryMemory()
+    const classroomRepository = new ClassroomRepositoryMemory()
+    const enrollmentRepository =  new EnrollmentRepositoryMemory()
+    enrollStudent = new EnrollStudent(levelRepository, moduleRepository, classroomRepository, enrollmentRepository)
+})
 
 it("Should not enroll without valid student name", function () {
     const enrollmentRequest:TypeEnrollmentRequest = {
@@ -9,10 +23,9 @@ it("Should not enroll without valid student name", function () {
             birthDate: "2002-03-12"
         },
         level: "EM",
-        module: "1",
-        class: "A"
-    }  
-    const enrollStudent = new EnrollStudent();
+        module: "3",
+        classroom: "A"
+    }     
     expect(() => enrollStudent.execute(enrollmentRequest)).toThrow(new ErrorName())
 });
 
@@ -25,10 +38,9 @@ it("Should not enroll without valid student cpf", function () {
             birthDate: "2002-03-12"
         },
         level: "EM",
-        module: "1",
-        class: "A"
+        module: "3",
+        classroom: "A"
     }
-    const enrollStudent = new EnrollStudent();
     expect(() => enrollStudent.execute(enrollmentRequest)).toThrow(new ErrorCpf())
 });
 
@@ -40,10 +52,9 @@ it("Should not enroll duplicated student", function () {
             birthDate: "2002-03-12"
         },
         level: "EM",
-        module: "1",
-        class: "A"
+        module: "3",
+        classroom: "A"
     }
-    const enrollStudent = new EnrollStudent();
     enrollStudent.execute(enrollmentRequest)
     expect(() => enrollStudent.execute(enrollmentRequest)).toThrow(new ErrorStudentDuplicated())
 });
@@ -56,17 +67,10 @@ it("Should generate enrollment code", function () {
             birthDate: "2002-03-12"
         },
         level: "EM",
-        module: "1",
-        class: "A"
+        module: "3",
+        classroom: "A"
     }
-    const enrollStudent= new EnrollStudent();
-    const FULL_YEAR= new Date().getFullYear()
-    const LEVEL= enrollmentRequest.level
-    const MODULE= enrollmentRequest.module
-    const CLASS= enrollmentRequest.class
-    const SEQUENCE = "0001"
-    const code=`${FULL_YEAR}${LEVEL}${MODULE}${CLASS}${SEQUENCE}`
-    expect(enrollStudent.execute(enrollmentRequest).code).toEqual(code)
+    expect(enrollStudent.execute(enrollmentRequest).code).toEqual("2021EM3A0001")
 });
 
 it("Should not enroll student below minimum age", function () {
@@ -78,9 +82,8 @@ it("Should not enroll student below minimum age", function () {
         },
         level: "EM",
         module: "1",
-        class: "A"
+        classroom: "A"
     }
-    const enrollStudent = new EnrollStudent();
     expect(()=>enrollStudent.execute(enrollmentRequest)).toThrow(new ErrorBelowMinimumAge())
 });
 
@@ -92,10 +95,9 @@ it("Should not enroll student over class capacity", function () {
             birthDate: "2000-01-19"
         },
         level: "EM",
-        module: "1",
-        class: "A"
+        module: "3",
+        classroom: "A"
     }
-
     const enrollmentRequest2:TypeEnrollmentRequest = {
         student: {
             name: "Mario Sérgio",
@@ -103,23 +105,9 @@ it("Should not enroll student over class capacity", function () {
             birthDate: "1970-05-09"
         },
         level: "EM",
-        module: "1",
-        class: "A"
+        module: "3",
+        classroom: "A"
     }
-
-    const enrollmentRequest3:TypeEnrollmentRequest = {
-        student: {
-            name: "Marcos Paulo",
-            cpf: "291.288.310-55",
-            birthDate: "1970-05-09"
-        },
-        level: "EM",
-        module: "1",
-        class: "A"
-    }
-
-    const enrollStudent = new EnrollStudent();
     enrollStudent.execute(enrollmentRequest1)
-    enrollStudent.execute(enrollmentRequest2)
-    expect(()=>enrollStudent.execute(enrollmentRequest3)).toThrow(new ErrorOverClassCapacity())
+    expect(()=>enrollStudent.execute(enrollmentRequest2)).toThrow(new ErrorOverClassCapacity())
 });

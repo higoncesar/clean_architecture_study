@@ -1,36 +1,35 @@
 import {ErrorCpf} from '../../errors'
-
 export default class Cpf{
-	value:string
+	value: string
 	
-	constructor(value:string){
+	constructor(value: string){
 		if(!this.validateCpf(value)) throw new ErrorCpf();
-		this.value = value
+		this.value= value
 	}
 
-	validateCpf(cpf:string) {
+	validateCpf(cpf: string) {
 		const FACTOR_DIGIT_1 = 10;
 		const FACTOR_DIGIT_2 = 11;
 		const MAX_DIGITS_1 = 9;
 		const MAX_DIGITS_2 = 10;
-		cpf = this.extractDigits(cpf);
+		cpf= this.extractDigits(cpf);
 		if (this.isInvalidLength(cpf)) return false;
 		if (this.isBlocked(cpf)) return false;
-		const digit1 = this.calculateDigit(cpf, FACTOR_DIGIT_1, MAX_DIGITS_1);
-		const digit2 = this.calculateDigit(cpf, FACTOR_DIGIT_2, MAX_DIGITS_2);
-		let calculatedCheckDigit = `${digit1}${digit2}`;  
-		return this.getCheckDigit(cpf) == calculatedCheckDigit;
+		const digit1= this.calculateDigit(cpf, FACTOR_DIGIT_1, MAX_DIGITS_1);
+		const digit2= this.calculateDigit(cpf, FACTOR_DIGIT_2, MAX_DIGITS_2);
+		let calculatedCheckDigit= `${digit1}${digit2}`;  
+		return this.getCheckDigit(cpf)== calculatedCheckDigit;
 	}
 
-	extractDigits(cpf:string) {
+	extractDigits(cpf: string) {
 		return cpf.replace(/\D/g, "");
 	}
 
-	isInvalidLength(cpf:string) {
+	isInvalidLength(cpf: string) {
 		return cpf.length !== 11;
 	}
 
-	isBlocked(cpf:string) {
+	isBlocked(cpf: string) {
 		const [digit1] = cpf;
 		return cpf.split("").every(digit => digit === digit1);
 	}
