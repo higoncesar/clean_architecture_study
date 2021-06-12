@@ -1,9 +1,11 @@
-export default interface EnrollmentRepository{
-  findByCpf: (cpf: string)=> any
+import Enrollment from "../entities/Enrollment";
 
-  findAllByClass: (level: string, module: string, classroom: string) =>  number
+export default interface EnrollmentRepository{
+  findByCpf: (cpf: string)=> Enrollment | undefined
+
+  totalEnrollmentByClass: (level: string, module: string, classroom: string) =>  number
 
   count: ()=> number
 
-  save: (enrollment:any)=> any
+  save: (enrollment:any)=> Enrollment  
 }

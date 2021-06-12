@@ -1,7 +1,5 @@
-import Pessoa, {Type as TypePessoa} from '../Pessoa'
-export interface Type extends TypePessoa {
-  
-}
+import Pessoa from '../Pessoa'
+
 export default class Student extends Pessoa{
 
 }

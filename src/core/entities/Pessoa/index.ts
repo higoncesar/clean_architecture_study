@@ -1,6 +1,5 @@
 import Cpf from '../Cpf'
-import {ErrorName} from '../../errors'
-export interface Type{
+interface Type{
   name:string
   cpf:string,
   birthDate: string
@@ -12,7 +11,7 @@ export default class Pessoa{
 
   constructor({name, cpf, birthDate}:Type){
     if(!this.validateName(name)){
-      throw(new ErrorName())
+      throw(new Error("Invalid name"))
     }else{
       this.name=name
       this.cpf= new Cpf(cpf)

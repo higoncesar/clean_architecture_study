@@ -1,8 +1,4 @@
-export interface LevelType{
-  code: string,
-  description: string
-}
-
+import Level from "../entities/Level";
 export default interface LevelRepository{
-  findByCode(code: string): LevelType;
+  findByCode(code: string): Level ;
 }

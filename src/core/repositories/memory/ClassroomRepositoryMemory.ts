@@ -1,16 +1,35 @@
-import ClassroomRepository, {ClassroomType} from "../ClassroomRepository";
+import Classroom from "../../entities/Classroom";
+import ClassroomRepository from "../ClassroomRepository";
 
 class ClassroomRepositoryMemory implements ClassroomRepository{
-  private classrooms: ClassroomType[]
+  private classrooms: any[]
 
   constructor(){
     this.classrooms =  [
-      {
-          level: "EM",
-          module: "3",
-          code: "A",
-          capacity:1
-      }
+      new Classroom({
+        level: "EM",
+        module: "3",
+        code: "A",
+        capacity: 1,
+        start_date: new Date("2021-06-01"),
+        end_date: new Date("2021-12-15")
+      }),
+      new Classroom({
+        level: "EM",
+        module: "3",
+        code: "B",
+        capacity: 5,
+        start_date: new Date("2021-05-01"),
+        end_date: new Date("2021-05-30")
+      }),
+      new Classroom({
+        level: "EM",
+        module: "3",
+        code: "C",
+        capacity: 5,
+        start_date:  new Date("2021-05-01"),
+        end_date: new Date("2021-06-30")
+      })
     ]
   }
 

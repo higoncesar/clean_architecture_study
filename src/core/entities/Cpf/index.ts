@@ -1,9 +1,8 @@
-import {ErrorCpf} from '../../errors'
 export default class Cpf{
 	value: string
 	
 	constructor(value: string){
-		if(!this.validateCpf(value)) throw new ErrorCpf();
+		if(!this.validateCpf(value)) throw new Error("Invalid cpf");
 		this.value= value
 	}
 

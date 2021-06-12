@@ -1,10 +1,5 @@
-export interface ClassroomType{
-  level: string,
-  module: string,
-  code: string,
-  capacity: number
-}
+import Classroom from "../entities/Classroom";
 
 export default interface ClassroomRepository{
-  findByCode: (code: string, model: string, level: string)=> ClassroomType
+  findByCode: (code: string, model: string, level: string)=> Classroom 
 }
