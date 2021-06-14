@@ -4,6 +4,14 @@ import EnrollmentRepository from "../EnrollmentRepository";
 class EnrollmentRepositoryMemory implements EnrollmentRepository{
   private enrollments: Enrollment[] = [];
 
+  getByCode(code: string){
+    const enrollment = this.enrollments.find(enrollment=> enrollment.code.value === code)
+    if(!enrollment) {
+      throw new Error("Enrollment not found")
+    }
+    return enrollment
+  }
+
   findByCpf(cpf: string){
     return this.enrollments.find(enrollment=> enrollment.student.cpf.value === cpf)
   }
@@ -17,7 +25,7 @@ class EnrollmentRepositoryMemory implements EnrollmentRepository{
     return this.enrollments.length + 1
   }
 
-  save(enrollment: any){
+  save(enrollment: Enrollment){
     this.enrollments.push(enrollment)
     return enrollment
   }
