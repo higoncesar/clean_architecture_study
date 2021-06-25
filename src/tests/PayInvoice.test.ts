@@ -1,9 +1,9 @@
-import EnrollStudent from '../EnrollStudent';
-import PayInvoice from './index';
-import GetEnrollment from '../GetEnrollment';
-import PayInvoiceInputData from './PayInvoiceInputData';
-import EnrollStudentInputData from '../EnrollStudent/EnrollStudentInputData';
-import RepositoryMemoryFactory from '../../../adapters/factories/RepositoryMemoryFactory';
+import EnrollStudent from '../domain/useCases/EnrollStudent';
+import PayInvoice from '../domain/useCases/PayInvoice';
+import GetEnrollment from '../domain/useCases/GetEnrollment';
+import PayInvoiceInputData from '../domain/useCases/PayInvoice/PayInvoiceInputData';
+import EnrollStudentInputData from '../domain/useCases/EnrollStudent/EnrollStudentInputData';
+import RepositoryMemoryFactory from '../adapters/factories/RepositoryMemoryFactory';
 
 let payInvoice: PayInvoice;
 let enrollStudent: EnrollStudent;

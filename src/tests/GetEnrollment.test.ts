@@ -1,7 +1,7 @@
-import EnrollStudentInputData from '../EnrollStudent/EnrollStudentInputData';
-import EnrollStudent from '../EnrollStudent';
-import GetEnrollment from './index';
-import RepositoryMemoryFactory from '../../../adapters/factories/RepositoryMemoryFactory';
+import EnrollStudentInputData from '../domain/useCases/EnrollStudent/EnrollStudentInputData';
+import EnrollStudent from '../domain/useCases/EnrollStudent';
+import GetEnrollment from '../domain/useCases/GetEnrollment';
+import RepositoryMemoryFactory from '../adapters/factories/RepositoryMemoryFactory';
 
 let getEnrollment: GetEnrollment;
 let enrollStudent: EnrollStudent;
