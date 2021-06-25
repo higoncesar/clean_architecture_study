@@ -1,5 +1,5 @@
-import Classroom from "../../entities/Classroom";
-import ClassroomRepository from "../ClassroomRepository";
+import Classroom from "../../../domain/entities/Classroom";
+import ClassroomRepository from "../../../domain/repositories/ClassroomRepository";
 
 class ClassroomRepositoryMemory implements ClassroomRepository{
   private classrooms: any[]

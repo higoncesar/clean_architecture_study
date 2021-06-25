@@ -1,18 +1,12 @@
 import EnrollStudent from "./index";
-import LevelRepositoryMemory from '../../repositories/memory/LevelRepositoryMemory'
-import ModuleRepositoryMemory from '../../repositories/memory/ModuleRepositoryMemory'
-import ClassroomRepositoryMemory from '../../repositories/memory/ClassroomRepositoryMemory'
-import EnrollmentRepositoryMemory from '../../repositories/memory/EnrollmentRepositoryMemory'
-import EnrollStudentRequest from "../../modelRequest/EnrollStudentRequest";
+import EnrollStudentRequest from "./EnrollStudentInputData";
+import RepositoryMemoryFactory from "../../../adapters/factories/RepositoryMemoryFactory";
 
 let enrollStudent: EnrollStudent
 
 beforeEach(()=>{
-    const levelRepository = new LevelRepositoryMemory()
-    const moduleRepository = new ModuleRepositoryMemory()
-    const classroomRepository = new ClassroomRepositoryMemory()
-    const enrollmentRepository =  new EnrollmentRepositoryMemory()
-    enrollStudent = new EnrollStudent(levelRepository, moduleRepository, classroomRepository, enrollmentRepository)
+    const repositoryMemoryFactory = new RepositoryMemoryFactory()
+    enrollStudent = new EnrollStudent(repositoryMemoryFactory)
 })
 
 it("Should not enroll without valid student name", function () {

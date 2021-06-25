@@ -1,4 +1,4 @@
-import InvoiceEvent from "../../events/InvoiceEvent"
+import InvoiceEvent from '../../events/InvoiceEvent'
 
 export default class Invoice{
   code: string

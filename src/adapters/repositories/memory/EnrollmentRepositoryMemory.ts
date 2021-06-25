@@ -1,5 +1,5 @@
-import Enrollment from "../../entities/Enrollment";
-import EnrollmentRepository from "../EnrollmentRepository";
+import Enrollment from "../../../domain/entities/Enrollment";
+import EnrollmentRepository from "../../../domain/repositories/EnrollmentRepository";
 
 class EnrollmentRepositoryMemory implements EnrollmentRepository{
   private enrollments: Enrollment[] = [];

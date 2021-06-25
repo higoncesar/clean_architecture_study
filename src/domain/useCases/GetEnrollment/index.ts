@@ -1,10 +1,13 @@
-import { request } from 'http'
+import RepositoryAbstractFactory from '../../factories/RepositoryAbstractFactory'
 import EnrollmentRepository from '../../repositories/EnrollmentRepository'
+
 export default class GetEnrollment{
   enrollmentRepository: EnrollmentRepository
-  constructor(enrollmentRepository: EnrollmentRepository){
-    this.enrollmentRepository = enrollmentRepository
+
+  constructor(repositoryFactory: RepositoryAbstractFactory){
+    this.enrollmentRepository = repositoryFactory.createEnrollmentRepository()
   }
+
   execute(code: string){
     const enrollment = this.enrollmentRepository.getByCode(code)
     return {...enrollment, invoiceBalance: enrollment.getInvoiceBalance()}

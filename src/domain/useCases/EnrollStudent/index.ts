@@ -4,7 +4,8 @@ import ModuleRepository from '../../repositories/ModuleRepository'
 import ClassroomRepository from '../../repositories/ClassroomRepository'
 import EnrollmentRepository from '../../repositories/EnrollmentRepository'
 import Enrollment from '../../entities/Enrollment'
-import EnrollStudentRequest from '../../modelRequest/EnrollStudentRequest'
+import EnrollStudentInputData from './EnrollStudentInputData'
+import RepositoryAbstractFactory from '../../factories/RepositoryAbstractFactory'
 
 export default class EnrollStudent{
   levelRepository: LevelRepository
@@ -12,20 +13,20 @@ export default class EnrollStudent{
   classroomRepository: ClassroomRepository
   enrollmentRepository: EnrollmentRepository
 
-  constructor(repositoryLevel:LevelRepository, moduleRepository: ModuleRepository, classroomRepository: ClassroomRepository, enrollmentRepository: EnrollmentRepository){
-      this.levelRepository = repositoryLevel
-      this.moduleRepository = moduleRepository
-      this.classroomRepository = classroomRepository
-      this.enrollmentRepository = enrollmentRepository
+  constructor(repositoryFactory:RepositoryAbstractFactory){
+      this.levelRepository = repositoryFactory.createLevelRepository()
+      this.moduleRepository = repositoryFactory.createModuleRepository()
+      this.classroomRepository = repositoryFactory.createClassroomRepository()
+      this.enrollmentRepository = repositoryFactory.createEnrollmentRepository()
   }
 
-  execute(request: EnrollStudentRequest){
-    const student= new Student({name:request.studentName, birthDate: request.studentBirthDate, cpf: request.studentCpf})
-    const isDuplicated= this.enrollmentRepository.findByCpf(request.studentCpf)
+  execute(input: EnrollStudentInputData){
+    const student= new Student({name:input.studentName, birthDate: input.studentBirthDate, cpf: input.studentCpf})
+    const isDuplicated= this.enrollmentRepository.findByCpf(input.studentCpf)
     if(isDuplicated) throw(new Error("Error student duplicated"))
-    const level= this.levelRepository.findByCode(request.level)
-    const module = this.moduleRepository.findByCode(request.module, level.code)
-    const classroom= this.classroomRepository.findByCode(request.classroom, module.code, level.code)
+    const level= this.levelRepository.findByCode(input.level)
+    const module = this.moduleRepository.findByCode(input.module, level.code)
+    const classroom= this.classroomRepository.findByCode(input.classroom, module.code, level.code)
     const studentsEnrolledInClass= this.enrollmentRepository.totalEnrollmentByClass(level.code, module.code, classroom.code)
     if(studentsEnrolledInClass >= classroom.capacity) throw new Error("Over class capacity")
     const issueDate = new Date()

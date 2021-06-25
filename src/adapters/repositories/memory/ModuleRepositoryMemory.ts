@@ -1,5 +1,5 @@
-import  Module  from "../../entities/Module";
-import ModuleRepository from "../ModuleRepository";
+import  Module  from "../../../domain/entities/Module";
+import ModuleRepository from "../../../domain/repositories/ModuleRepository";
 
 class ModuleRepositoryMemory implements ModuleRepository{
   private modules: Module[]

@@ -1,5 +1,5 @@
-import Level from '../../entities/Level'
-import LevelRepository from '../LevelRepository'
+import Level from '../../../domain/entities/Level'
+import LevelRepository from '../../../domain/repositories/LevelRepository'
 
 export default class LevelRepositoryMemory implements LevelRepository{
   private levels: Level[]
