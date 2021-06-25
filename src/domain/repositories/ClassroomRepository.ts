@@ -1,5 +1,5 @@
-import Classroom from "../entities/Classroom";
+import Classroom from '../entities/Classroom';
 
 export default interface ClassroomRepository{
-  findByCode: (code: string, model: string, level: string)=> Classroom 
-}
+  findByCode: (code: string, model: string, level: string)=> Classroom
+};

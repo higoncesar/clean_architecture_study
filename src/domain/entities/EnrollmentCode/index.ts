@@ -1,6 +1,7 @@
-export default class EnrollmentCode{
+export default class EnrollmentCode {
   value: string
-  constructor(level:string, module:string, classroom: string, date: Date, sequence: string){
-    this.value =`${date.getFullYear()}${level}${module}${classroom}${sequence}`
+
+  constructor(level:string, module:string, classroom: string, date: Date, sequence: string) {
+    this.value = `${date.getFullYear()}${level}${module}${classroom}${sequence}`;
   }
 }

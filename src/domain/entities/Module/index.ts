@@ -6,18 +6,24 @@ interface IModule{
   price: number
 }
 
-export default class Module{
+export default class Module {
   level: string;
+
   code: string;
+
   description: string;
+
   minimumAge: number;
+
   price: number;
-  
-  constructor({level, code, description, minimumAge, price}:IModule){
+
+  constructor({
+    level, code, description, minimumAge, price,
+  }:IModule) {
     this.level = level,
     this.code = code,
-    this.description= description,
-    this.minimumAge=minimumAge,
-    this.price=price
+    this.description = description,
+    this.minimumAge = minimumAge,
+    this.price = price;
   }
 }

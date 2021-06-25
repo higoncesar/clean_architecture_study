@@ -1,10 +1,10 @@
-export default class ErrorOverClassCapacity extends Error{
+export default class ErrorOverClassCapacity extends Error {
   status=402
-  
-  constructor () {
+
+  constructor() {
     super();
-    this.name = "ErrorOverClassCapacity";
-    this.message = "Over class capacity";
+    this.name = 'ErrorOverClassCapacity';
+    this.message = 'Over class capacity';
     Error.captureStackTrace(this, this.constructor);
   }
 }

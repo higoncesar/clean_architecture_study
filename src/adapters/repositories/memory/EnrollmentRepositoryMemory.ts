@@ -1,34 +1,34 @@
-import Enrollment from "../../../domain/entities/Enrollment";
-import EnrollmentRepository from "../../../domain/repositories/EnrollmentRepository";
+import Enrollment from '../../../domain/entities/Enrollment';
+import EnrollmentRepository from '../../../domain/repositories/EnrollmentRepository';
 
-class EnrollmentRepositoryMemory implements EnrollmentRepository{
+class EnrollmentRepositoryMemory implements EnrollmentRepository {
   private enrollments: Enrollment[] = [];
 
-  getByCode(code: string){
-    const enrollment = this.enrollments.find(enrollment=> enrollment.code.value === code)
-    if(!enrollment) {
-      throw new Error("Enrollment not found")
+  getByCode(code: string) {
+    const enrollment = this.enrollments.find((enrollment) => enrollment.code.value === code);
+    if (!enrollment) {
+      throw new Error('Enrollment not found');
     }
-    return enrollment
+    return enrollment;
   }
 
-  findByCpf(cpf: string){
-    return this.enrollments.find(enrollment=> enrollment.student.cpf.value === cpf)
+  findByCpf(cpf: string) {
+    return this.enrollments.find((enrollment) => enrollment.student.cpf.value === cpf);
   }
 
-  totalEnrollmentByClass(level: string, module: string, classroom: string){
-    const enrollments = this.enrollments.filter(enrollment=> enrollment.level.code === level && enrollment.module.code ===module && enrollment.classroom.code === classroom).length
-    return enrollments
+  totalEnrollmentByClass(level: string, module: string, classroom: string) {
+    const enrollments = this.enrollments.filter((enrollment) => enrollment.level.code === level && enrollment.module.code === module && enrollment.classroom.code === classroom).length;
+    return enrollments;
   }
 
-  count(){
-    return this.enrollments.length + 1
+  count() {
+    return this.enrollments.length + 1;
   }
 
-  save(enrollment: Enrollment){
-    this.enrollments.push(enrollment)
-    return enrollment
+  save(enrollment: Enrollment) {
+    this.enrollments.push(enrollment);
+    return enrollment;
   }
 }
 
-export default EnrollmentRepositoryMemory
+export default EnrollmentRepositoryMemory;

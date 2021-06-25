@@ -1,10 +1,10 @@
-import ErrorName from './ErrorName'
-import ErrorCpf from './ErrorCpf'
-import ErrorStudentDuplicated from './ErrorStudentDuplicated'
-import ErrorBelowMinimumAge from './ErrorBelowMinimumAge'
-import ErrorOverClassCapacity from './ErrorOverClassCapacity'
-import ErrorClassFinished from './ErrorClassFinished'
-import ErrorClassAlreadyStarted from './ErrorClassAlreadyStarted'
+import ErrorName from './ErrorName';
+import ErrorCpf from './ErrorCpf';
+import ErrorStudentDuplicated from './ErrorStudentDuplicated';
+import ErrorBelowMinimumAge from './ErrorBelowMinimumAge';
+import ErrorOverClassCapacity from './ErrorOverClassCapacity';
+import ErrorClassFinished from './ErrorClassFinished';
+import ErrorClassAlreadyStarted from './ErrorClassAlreadyStarted';
 
 export {
   ErrorName,
@@ -13,5 +13,5 @@ export {
   ErrorBelowMinimumAge,
   ErrorOverClassCapacity,
   ErrorClassFinished,
-  ErrorClassAlreadyStarted
-}
+  ErrorClassAlreadyStarted,
+};
