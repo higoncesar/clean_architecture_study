@@ -4,7 +4,9 @@ import EnrollmentRepositoryMemorySingleton from '../repositories/memory/Enrollme
 import LevelRepositoryMemory from '../repositories/memory/LevelRepositoryMemory';
 import ModuleRepositoryMemory from '../repositories/memory/ModuleRepositoryMemory';
 
-export default class RepositoryMemoryFactory implements RepositoryAbstractFactory {
+export default class RepositoryMemoryFactory
+  implements RepositoryAbstractFactory
+{
   constructor() {
     EnrollmentRepositoryMemorySingleton.destroy();
   }

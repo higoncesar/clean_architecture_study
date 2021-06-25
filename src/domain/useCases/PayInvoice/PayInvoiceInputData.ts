@@ -1,24 +1,22 @@
-interface Input{
-  code: string,
-  month: number,
-  year: number,
-  amount: number,
-  date: Date
+interface Input {
+  code: string;
+  month: number;
+  year: number;
+  amount: number;
+  date: Date;
 }
 export default class PayInvoiceInputData {
-  code: string
+  code: string;
 
-  month: number
+  month: number;
 
-  year: number
+  year: number;
 
-  amount: number
+  amount: number;
 
-  date: Date
+  date: Date;
 
-  constructor({
-    code, month, year, amount, date,
-  }:Input) {
+  constructor({ code, month, year, amount, date }: Input) {
     this.code = code;
     this.month = month;
     this.year = year;

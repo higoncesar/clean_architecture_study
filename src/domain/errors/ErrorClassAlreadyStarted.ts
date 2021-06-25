@@ -1,5 +1,5 @@
 export default class ErrorClassAlreadyStarted extends Error {
-  status=402
+  status = 402;
 
   constructor() {
     super();

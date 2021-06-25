@@ -1,27 +1,27 @@
 interface Input {
-  studentName: string,
-  studentCpf: string,
-  studentBirthDate: string,
-  level: string,
-  module: string,
-  classroom: string,
-  installments: number
+  studentName: string;
+  studentCpf: string;
+  studentBirthDate: string;
+  level: string;
+  module: string;
+  classroom: string;
+  installments: number;
 }
 
 export default class EnrollStudentInputData {
-  studentName: string
+  studentName: string;
 
-  studentCpf: string
+  studentCpf: string;
 
-  studentBirthDate: string
+  studentBirthDate: string;
 
-  level: string
+  level: string;
 
-  module: string
+  module: string;
 
-  classroom: string
+  classroom: string;
 
-  installments: number
+  installments: number;
 
   constructor(input: Input) {
     this.studentName = input.studentName;

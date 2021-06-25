@@ -2,7 +2,7 @@ import Module from '../../../domain/entities/Module';
 import ModuleRepository from '../../../domain/repositories/ModuleRepository';
 
 class ModuleRepositoryMemory implements ModuleRepository {
-  private modules: Module[]
+  private modules: Module[];
 
   constructor() {
     this.modules = [
@@ -93,8 +93,10 @@ class ModuleRepositoryMemory implements ModuleRepository {
     ];
   }
 
-  findByCode(code:string, level:string) {
-    const module = this.modules.find((module) => module.code === code && module.level === level);
+  findByCode(code: string, level: string) {
+    const module = this.modules.find(
+      (module) => module.code === code && module.level === level
+    );
     if (!module) throw new Error('Module does not exist');
     return module;
   }

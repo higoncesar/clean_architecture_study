@@ -14,7 +14,9 @@ beforeEach(() => {
 
 it('Should throw error when get enrollment with invalid code', () => {
   const code = '2021EM1A0001';
-  expect(() => getEnrollment.execute(code)).toThrow(new Error('Enrollment not found'));
+  expect(() => getEnrollment.execute(code)).toThrow(
+    new Error('Enrollment not found')
+  );
 });
 
 it('Should get enrollment by code with invoice balance', () => {

@@ -2,7 +2,7 @@ import Level from '../../../domain/entities/Level';
 import LevelRepository from '../../../domain/repositories/LevelRepository';
 
 export default class LevelRepositoryMemory implements LevelRepository {
-  private levels: Level[]
+  private levels: Level[];
 
   constructor() {
     this.levels = [

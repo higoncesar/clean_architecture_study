@@ -5,7 +5,9 @@ class EnrollmentRepositoryMemory implements EnrollmentRepository {
   private enrollments: Enrollment[] = [];
 
   getByCode(code: string) {
-    const enrollment = this.enrollments.find((enrollment) => enrollment.code.value === code);
+    const enrollment = this.enrollments.find(
+      (enrollment) => enrollment.code.value === code
+    );
     if (!enrollment) {
       throw new Error('Enrollment not found');
     }
@@ -13,11 +15,18 @@ class EnrollmentRepositoryMemory implements EnrollmentRepository {
   }
 
   findByCpf(cpf: string) {
-    return this.enrollments.find((enrollment) => enrollment.student.cpf.value === cpf);
+    return this.enrollments.find(
+      (enrollment) => enrollment.student.cpf.value === cpf
+    );
   }
 
   totalEnrollmentByClass(level: string, module: string, classroom: string) {
-    const enrollments = this.enrollments.filter((enrollment) => enrollment.level.code === level && enrollment.module.code === module && enrollment.classroom.code === classroom).length;
+    const enrollments = this.enrollments.filter(
+      (enrollment) =>
+        enrollment.level.code === level &&
+        enrollment.module.code === module &&
+        enrollment.classroom.code === classroom
+    ).length;
     return enrollments;
   }
 

@@ -2,11 +2,12 @@ import EnrollmentRepositoryMemory from './EnrollmentRepositoryMemory';
 import EnrollmentRepository from '../../../domain/repositories/EnrollmentRepository';
 
 export default class EnrollmentRepositoryMemorySingleton {
-  static instance : EnrollmentRepository | undefined
+  static instance: EnrollmentRepository | undefined;
 
-  static getInstance():EnrollmentRepository {
+  static getInstance(): EnrollmentRepository {
     if (!EnrollmentRepositoryMemorySingleton.instance) {
-      EnrollmentRepositoryMemorySingleton.instance = new EnrollmentRepositoryMemory();
+      EnrollmentRepositoryMemorySingleton.instance =
+        new EnrollmentRepositoryMemory();
     }
     return EnrollmentRepositoryMemorySingleton.instance;
   }

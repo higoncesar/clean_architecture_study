@@ -8,15 +8,15 @@ import EnrollStudentInputData from './EnrollStudentInputData';
 import RepositoryAbstractFactory from '../../factories/RepositoryAbstractFactory';
 
 export default class EnrollStudent {
-  levelRepository: LevelRepository
+  levelRepository: LevelRepository;
 
-  moduleRepository: ModuleRepository
+  moduleRepository: ModuleRepository;
 
-  classroomRepository: ClassroomRepository
+  classroomRepository: ClassroomRepository;
 
-  enrollmentRepository: EnrollmentRepository
+  enrollmentRepository: EnrollmentRepository;
 
-  constructor(repositoryFactory:RepositoryAbstractFactory) {
+  constructor(repositoryFactory: RepositoryAbstractFactory) {
     this.levelRepository = repositoryFactory.createLevelRepository();
     this.moduleRepository = repositoryFactory.createModuleRepository();
     this.classroomRepository = repositoryFactory.createClassroomRepository();
@@ -24,17 +24,38 @@ export default class EnrollStudent {
   }
 
   execute(input: EnrollStudentInputData) {
-    const student = new Student({ name: input.studentName, birthDate: input.studentBirthDate, cpf: input.studentCpf });
+    const student = new Student({
+      name: input.studentName,
+      birthDate: input.studentBirthDate,
+      cpf: input.studentCpf,
+    });
     const isDuplicated = this.enrollmentRepository.findByCpf(input.studentCpf);
-    if (isDuplicated) throw (new Error('Error student duplicated'));
+    if (isDuplicated) throw new Error('Error student duplicated');
     const level = this.levelRepository.findByCode(input.level);
     const module = this.moduleRepository.findByCode(input.module, level.code);
-    const classroom = this.classroomRepository.findByCode(input.classroom, module.code, level.code);
-    const studentsEnrolledInClass = this.enrollmentRepository.totalEnrollmentByClass(level.code, module.code, classroom.code);
-    if (studentsEnrolledInClass >= classroom.capacity) throw new Error('Over class capacity');
+    const classroom = this.classroomRepository.findByCode(
+      input.classroom,
+      module.code,
+      level.code
+    );
+    const studentsEnrolledInClass =
+      this.enrollmentRepository.totalEnrollmentByClass(
+        level.code,
+        module.code,
+        classroom.code
+      );
+    if (studentsEnrolledInClass >= classroom.capacity)
+      throw new Error('Over class capacity');
     const issueDate = new Date();
     const sequence = String(this.enrollmentRepository.count()).padStart(4, '0');
-    const enrollment = new Enrollment(student, level, module, classroom, issueDate, sequence);
+    const enrollment = new Enrollment(
+      student,
+      level,
+      module,
+      classroom,
+      issueDate,
+      sequence
+    );
     this.enrollmentRepository.save(enrollment);
     return enrollment;
   }

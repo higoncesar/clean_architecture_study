@@ -1,5 +1,5 @@
 export default class ErrorStudentDuplicated extends Error {
-  status=402
+  status = 402;
 
   constructor() {
     super();

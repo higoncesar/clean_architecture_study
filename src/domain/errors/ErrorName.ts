@@ -1,5 +1,5 @@
 export default class ErrorName extends Error {
-  status=402
+  status = 402;
 
   constructor() {
     super();

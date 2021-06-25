@@ -1,17 +1,17 @@
 import InvoiceEvent from '../../events/InvoiceEvent';
 
 export default class Invoice {
-  code: string
+  code: string;
 
-  month: number
+  month: number;
 
-  year: number
+  year: number;
 
-  amount: number
+  amount: number;
 
-  events: InvoiceEvent[] = []
+  events: InvoiceEvent[] = [];
 
-  constructor(code: string, month: number, year: number, amount:number) {
+  constructor(code: string, month: number, year: number, amount: number) {
     this.code = code;
     this.month = month;
     this.year = year;

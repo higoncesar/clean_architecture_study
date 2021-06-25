@@ -1,27 +1,32 @@
-interface IClassroom{
-  level: string
-  module: string
-  code: string
-  capacity: number,
-  start_date: Date,
-  end_date: Date
+interface IClassroom {
+  level: string;
+  module: string;
+  code: string;
+  capacity: number;
+  start_date: Date;
+  end_date: Date;
 }
 
 export default class Classroom {
-  level: string
+  level: string;
 
-  module: string
+  module: string;
 
-  code: string
+  code: string;
 
-  capacity: number
+  capacity: number;
 
-  start_date: Date
+  start_date: Date;
 
-  end_date: Date
+  end_date: Date;
 
   constructor({
-    level, module, code, capacity, start_date, end_date,
+    level,
+    module,
+    code,
+    capacity,
+    start_date,
+    end_date,
   }: IClassroom) {
     this.level = level;
     this.module = module;
@@ -31,11 +36,14 @@ export default class Classroom {
     this.end_date = end_date;
   }
 
-  isFinished(currentDate:Date) {
+  isFinished(currentDate: Date) {
     return currentDate.getTime() > this.end_date.getTime();
   }
 
   getPercentageProgress(currentDate: Date) {
-    return Math.round(((currentDate.getTime() - this.start_date.getTime()) * 100) / (this.end_date.getTime() - this.start_date.getTime()));
+    return Math.round(
+      ((currentDate.getTime() - this.start_date.getTime()) * 100) /
+        (this.end_date.getTime() - this.start_date.getTime())
+    );
   }
 }

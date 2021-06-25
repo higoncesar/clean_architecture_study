@@ -2,7 +2,7 @@ import Classroom from '../../../domain/entities/Classroom';
 import ClassroomRepository from '../../../domain/repositories/ClassroomRepository';
 
 class ClassroomRepositoryMemory implements ClassroomRepository {
-  private classrooms: any[]
+  private classrooms: Classroom[];
 
   constructor() {
     this.classrooms = [
@@ -34,7 +34,12 @@ class ClassroomRepositoryMemory implements ClassroomRepository {
   }
 
   findByCode(code: string, module: string, level: string) {
-    const classroom = this.classrooms.find((classroom) => ((classroom.code === code) && (classroom.module == module) && (classroom.level === level)));
+    const classroom = this.classrooms.find(
+      (classroom) =>
+        classroom.code === code &&
+        classroom.module === module &&
+        classroom.level === level
+    );
     if (!classroom) throw new Error('Class does not exist');
     return classroom;
   }

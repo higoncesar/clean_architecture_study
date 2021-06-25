@@ -3,7 +3,7 @@ import EnrollmentRepository from '../../repositories/EnrollmentRepository';
 import PayInvoiceInputData from './PayInvoiceInputData';
 
 export default class PayInvoice {
-  enrollmentRepository: EnrollmentRepository
+  enrollmentRepository: EnrollmentRepository;
 
   constructor(repositoryFactory: RepositoryAbstractFactory) {
     this.enrollmentRepository = repositoryFactory.createEnrollmentRepository();

@@ -16,7 +16,9 @@ beforeEach(() => {
 });
 
 it('Should throw a error when try cancel enrollment with invalid code', () => {
-  expect(() => cancelEnrollment.execute('invalid code')).toThrow(new Error('Enrollment not found'));
+  expect(() => cancelEnrollment.execute('invalid code')).toThrow(
+    new Error('Enrollment not found')
+  );
 });
 
 it('Should cancel enrollment', () => {

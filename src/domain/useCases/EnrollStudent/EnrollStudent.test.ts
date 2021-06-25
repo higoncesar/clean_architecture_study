@@ -19,7 +19,9 @@ it('Should not enroll without valid student name', () => {
     classroom: 'A',
     installments: 12,
   });
-  expect(() => enrollStudent.execute(enrollmentRequest)).toThrow(new Error('Invalid name'));
+  expect(() => enrollStudent.execute(enrollmentRequest)).toThrow(
+    new Error('Invalid name')
+  );
 });
 
 it('Should not enroll without valid student cpf', () => {
@@ -32,7 +34,9 @@ it('Should not enroll without valid student cpf', () => {
     classroom: 'A',
     installments: 12,
   });
-  expect(() => enrollStudent.execute(enrollmentRequest)).toThrow(new Error('Invalid cpf'));
+  expect(() => enrollStudent.execute(enrollmentRequest)).toThrow(
+    new Error('Invalid cpf')
+  );
 });
 
 it('Should not enroll duplicated student', () => {
@@ -46,7 +50,9 @@ it('Should not enroll duplicated student', () => {
     installments: 12,
   });
   enrollStudent.execute(enrollmentRequest);
-  expect(() => enrollStudent.execute(enrollmentRequest)).toThrow(new Error('Error student duplicated'));
+  expect(() => enrollStudent.execute(enrollmentRequest)).toThrow(
+    new Error('Error student duplicated')
+  );
 });
 
 it('Should generate enrollment code', () => {
@@ -59,7 +65,9 @@ it('Should generate enrollment code', () => {
     classroom: 'A',
     installments: 12,
   });
-  expect(enrollStudent.execute(enrollmentRequest).code.value).toEqual('2021EM3A0001');
+  expect(enrollStudent.execute(enrollmentRequest).code.value).toEqual(
+    '2021EM3A0001'
+  );
 });
 
 it('Should not enroll student below minimum age', () => {
@@ -72,7 +80,9 @@ it('Should not enroll student below minimum age', () => {
     classroom: 'A',
     installments: 12,
   });
-  expect(() => enrollStudent.execute(enrollmentRequest)).toThrow(new Error('Below minimum age'));
+  expect(() => enrollStudent.execute(enrollmentRequest)).toThrow(
+    new Error('Below minimum age')
+  );
 });
 
 it('Should not enroll student over class capacity', () => {
@@ -95,7 +105,9 @@ it('Should not enroll student over class capacity', () => {
     installments: 12,
   });
   enrollStudent.execute(enrollmentRequest1);
-  expect(() => enrollStudent.execute(enrollmentRequest2)).toThrow(new Error('Over class capacity'));
+  expect(() => enrollStudent.execute(enrollmentRequest2)).toThrow(
+    new Error('Over class capacity')
+  );
 });
 
 it('Should not enroll after que end of the class', () => {
@@ -108,7 +120,9 @@ it('Should not enroll after que end of the class', () => {
     classroom: 'B',
     installments: 12,
   });
-  expect(() => enrollStudent.execute(enrollmentRequest)).toThrow(new Error('Class is already finished'));
+  expect(() => enrollStudent.execute(enrollmentRequest)).toThrow(
+    new Error('Class is already finished')
+  );
 });
 
 it('Should not enroll after 25% of the start of the class', () => {
@@ -122,7 +136,9 @@ it('Should not enroll after 25% of the start of the class', () => {
     installments: 12,
   });
 
-  expect(() => enrollStudent.execute(enrollmentRequest)).toThrow(new Error('Class is already started'));
+  expect(() => enrollStudent.execute(enrollmentRequest)).toThrow(
+    new Error('Class is already started')
+  );
 });
 
 it('Should generate the invoices based on the number of installments, rounding each amount and applying the rest in the last invoice', () => {
